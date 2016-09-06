@@ -7,17 +7,14 @@ unlink(temp)
 
 # Convert data to numeric
 origDs$Global_active_power <- as.numeric(origDs$Global_active_power)
-gap <- origDs$Global_active_power
-gap <- gap[!is.na(gap)]
+origDs[,"dateval"] <- as.Date(origDs$Date,'%d/%m/%Y')
+t1 <- tbl_df(origDs)
+t2 <- filter(t1, dateval >= as.Date("2007-02-01") & dateval <= as.Date("2007-02-02"))
 
-#opar <- options(scipen=1000)
-#options("scipen"=100, "digits"=4)
-options(scipen = 999)
-
-hist(gap, col = "red", 
+hist(t2$Global_active_power, col = "red", 
      main = "Global Active Power", 
      plot = TRUE, 
-     ylim=range(0:1200000),
+     ylim=range(0:1200),
      xlim=range(0:6),
      xlab = "Global Active Power (kilowatts)")
 
