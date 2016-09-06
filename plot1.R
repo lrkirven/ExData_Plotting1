@@ -18,6 +18,5 @@ hist(t2$Global_active_power, col = "red",
      xlim=range(0:6),
      xlab = "Global Active Power (kilowatts)")
 
-dev.copy(png,'plot1.png')
+dev.copy(png,'plot1.png', width=480, height=480)
 dev.off()
-
